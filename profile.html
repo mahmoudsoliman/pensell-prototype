@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الملف الشخصي - بنسل</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Noto Sans Arabic', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <a href="/" class="flex items-center">
+            <i data-lucide="pen" class="h-8 w-8 text-indigo-600 ml-2"></i>
+            <span class="text-xl font-bold text-gray-900">بنسل</span>
+          </a>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+          <a href="/" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">
+            <i data-lucide="home" class="h-5 w-5 ml-1"></i>
+            الرئيسية
+          </a>
+          <a href="/write.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">
+            <i data-lucide="pen-square" class="h-5 w-5 ml-1"></i>
+            كتابة
+          </a>
+          <a href="/library.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">
+            <i data-lucide="book-marked" class="h-5 w-5 ml-1"></i>
+            المكتبة
+          </a>
+          <a href="/profile.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-indigo-600 bg-indigo-50">
+            <i data-lucide="user" class="h-5 w-5 ml-1"></i>
+            الملف الشخصي
+          </a>
+          <button onclick="handleLogout()" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">
+            <i data-lucide="log-out" class="h-5 w-5 ml-1"></i>
+            تسجيل الخروج
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="min-h-screen">
+    <!-- Cover Image -->
+    <div class="h-64 relative">
+      <img
+        src="https://images.unsplash.com/photo-1519681393784-d120267933ba"
+        alt="صورة الغلاف"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-black/20"></div>
+    </div>
+
+    <!-- Profile Info -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative -mt-32">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+          <div class="sm:flex sm:items-center sm:justify-between">
+            <div class="sm:flex sm:space-x-5">
+              <div class="flex-shrink-0">
+                <img
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330"
+                  alt="سارة جونسون"
+                  class="mx-auto h-32 w-32 rounded-full border-4 border-white shadow-lg"
+                />
+              </div>
+              <div class="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-right mr-5">
+                <p class="text-sm font-medium text-gray-600">@starwriter</p>
+                <h1 class="text-xl font-bold text-gray-900 sm:text-2xl">
+                  سارة جونسون
+                </h1>
+                <div class="mt-3 flex flex-wrap gap-4 text-sm text-gray-500">
+                  <span class="flex items-center">
+                    <i data-lucide="map-pin" class="h-4 w-4 ml-1"></i>
+                    الرياض، المملكة العربية السعودية
+                  </span>
+                  <span class="flex items-center">
+                    <i data-lucide="calendar" class="h-4 w-4 ml-1"></i>
+                    انضم في يناير 2023
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="mt-5 flex justify-center sm:mt-0">
+              <button onclick="window.location.href='/edit-profile.html'" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                <i data-lucide="edit-2" class="h-4 w-4 ml-2"></i>
+                تعديل الملف
+              </button>
+              <button class="mr-3 inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                <i data-lucide="settings" class="h-4 w-4 ml-2"></i>
+                الإعدادات
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-4 text-center">
+            <div class="px-4 py-5 bg-gray-50 shadow-sm rounded-lg overflow-hidden sm:p-6">
+              <dt class="text-sm font-medium text-gray-500 truncate">القصص</dt>
+              <dd class="mt-1 text-3xl font-semibold text-gray-900">24</dd>
+            </div>
+            <div class="px-4 py-5 bg-gray-50 shadow-sm rounded-lg overflow-hidden sm:p-6">
+              <dt class="text-sm font-medium text-gray-500 truncate">المتابِعون</dt>
+              <dd class="mt-1 text-3xl font-semibold text-gray-900">5,000</dd>
+            </div>
+            <div class="px-4 py-5 bg-gray-50 shadow-sm rounded-lg overflow-hidden sm:p-6">
+              <dt class="text-sm font-medium text-gray-500 truncate">المتابَعون</dt>
+              <dd class="mt-1 text-3xl font-semibold text-gray-900">1,200</dd>
+            </div>
+            <div class="px-4 py-5 bg-gray-50 shadow-sm rounded-lg overflow-hidden sm:p-6">
+              <dt class="text-sm font-medium text-gray-500 truncate">إجمالي المشاهدات</dt>
+              <dd class="mt-1 text-3xl font-semibold text-gray-900">150,000</dd>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <div class="border-b border-gray-200">
+              <nav class="-mb-px flex space-x-8">
+                <button
+                  onclick="switchTab('stories')"
+                  class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm border-indigo-500 text-indigo-600"
+                  id="storiesTab"
+                >
+                  القصص
+                </button>
+                <button
+                  onclick="switchTab('about')"
+                  class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 mr-8"
+                  id="aboutTab"
+                >
+                  نبذة
+                </button>
+                <button
+                  onclick="switchTab('following')"
+                  class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 mr-8"
+                  id="followingTab"
+                >
+                  المتابَعون
+                </button>
+              </nav>
+            </div>
+
+            <div class="mt-6">
+              <!-- Stories Tab -->
+              <div id="storiesContent" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Story cards will be inserted here by JavaScript -->
+              </div>
+
+              <!-- About Tab -->
+              <div id="aboutContent" class="prose max-w-none hidden">
+                <p class="text-gray-500">كاتبة شغوفة تستكشف حدود الخيال العلمي والفانتازيا. أحب خلق عوالم جديدة وشخصيات لا تُنسى. مهتمة بالتكنولوجيا والفضاء والمستقبل.</p>
+              </div>
+
+              <!-- Following Tab -->
+              <div id="followingContent" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 hidden">
+                <!-- Following list will be inserted here by JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Mock story data
+    const stories = [
+      {
+        id: '1',
+        title: 'السفينة الفضائية الأخيرة',
+        description: 'مغامرة مثيرة في الفضاء',
+        coverImage: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa',
+        status: 'مستمرة',
+        views: 15000
+      },
+      {
+        id: '2',
+        title: 'همسات في الظلام',
+        description: 'قصة رعب وغموض',
+        coverImage: 'https://images.unsplash.com/photo-1518709766631-a6a7f45921c3',
+        status: 'مكتملة',
+        views: 12000
+      }
+    ];
+
+    // Render story cards
+    const storiesContent = document.getElementById('storiesContent');
+    stories.forEach(story => {
+      const card = document.createElement('div');
+      card.className = 'bg-white rounded-lg shadow-sm overflow-hidden';
+      card.innerHTML = `
+        <img
+          src="${story.coverImage}"
+          alt="${story.title}"
+          class="w-full h-48 object-cover"
+        />
+        <div class="p-4">
+          <h3 class="text-lg font-medium text-gray-900">${story.title}</h3>
+          <p class="mt-1 text-sm text-gray-500">${story.description}</p>
+          <div class="mt-4 flex items-center justify-between text-sm text-gray-500">
+            <span>${story.status}</span>
+            <span>${story.views.toLocaleString('ar-SA')} مشاهدة</span>
+          </div>
+        </div>
+      `;
+      storiesContent.appendChild(card);
+    });
+
+    // Tab switching functionality
+    function switchTab(tabName) {
+      // Hide all content
+      document.getElementById('storiesContent').classList.add('hidden');
+      document.getElementById('aboutContent').classList.add('hidden');
+      document.getElementById('followingContent').classList.add('hidden');
+
+      // Show selected content
+      document.getElementById(`${tabName}Content`).classList.remove('hidden');
+
+      // Update tab styles
+      document.getElementById('storiesTab').classList.remove('border-indigo-500', 'text-indigo-600');
+      document.getElementById('aboutTab').classList.remove('border-indigo-500', 'text-indigo-600');
+      document.getElementById('followingTab').classList.remove('border-indigo-500', 'text-indigo-600');
+
+      document.getElementById(`${tabName}Tab`).classList.add('border-indigo-500', 'text-indigo-600');
+    }
+
+    function handleLogout() {
+      // Add logout logic here
+      alert('تم تسجيل الخروج بنجاح');
+    }
+  </script>
+</body>
+</html>

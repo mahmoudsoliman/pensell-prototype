@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تعديل الملف الشخصي - بنسل</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Noto Sans Arabic', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <a href="/" class="flex items-center">
+            <i data-lucide="pen" class="h-8 w-8 text-indigo-600 ml-2"></i>
+            <span class="text-xl font-bold text-gray-900">بنسل</span>
+          </a>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+          <a href="/" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">
+            <i data-lucide="home" class="h-5 w-5 ml-1"></i>
+            الرئيسية
+          </a>
+          <a href="/write.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">
+            <i data-lucide="pen-square" class="h-5 w-5 ml-1"></i>
+            كتابة
+          </a>
+          <a href="/library.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">
+            <i data-lucide="book-marked" class="h-5 w-5 ml-1"></i>
+            المكتبة
+          </a>
+          <a href="/profile.html" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-indigo-600 bg-indigo-50">
+            <i data-lucide="user" class="h-5 w-5 ml-1"></i>
+            الملف الشخصي
+          </a>
+          <button onclick="handleLogout()" class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">
+            <i data-lucide="log-out" class="h-5 w-5 ml-1"></i>
+            تسجيل الخروج
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-3xl mx-auto py-8 px-4">
+    <div class="bg-white rounded-lg shadow-lg p-6">
+      <div class="border-b border-gray-200 pb-4 mb-6">
+        <h1 class="text-2xl font-bold text-gray-900">تعديل الملف الشخصي</h1>
+        <p class="mt-1 text-sm text-gray-500">قم بتحديث معلومات ملفك الشخصي</p>
+      </div>
+
+      <form id="profileForm" class="space-y-6">
+        <!-- Banner Image (New Section) -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">صورة الغلاف</label>
+          <div class="relative">
+            <div class="aspect-[3/1] rounded-lg overflow-hidden bg-gray-100">
+              <img
+                id="bannerPreview"
+                src="https://images.unsplash.com/photo-1519681393784-d120267933ba"
+                alt="صورة الغلاف"
+                class="w-full h-full object-cover"
+              >
+              <div class="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
+                <div class="text-center">
+                  <label class="cursor-pointer inline-flex items-center px-4 py-2 bg-white/90 rounded-full text-sm font-medium text-gray-700 hover:bg-white focus:outline-none">
+                    <i data-lucide="upload" class="h-4 w-4 ml-2"></i>
+                    تغيير الصورة
+                    <input
+                      type="file"
+                      id="bannerImage"
+                      accept="image/jpeg,image/png"
+                      class="sr-only"
+                      onchange="handleBannerUpload(event)"
+                    >
+                  </label>
+                  <button
+                    type="button"
+                    onclick="removeBannerImage()"
+                    class="mr-2 inline-flex items-center px-4 py-2 bg-white/90 rounded-full text-sm font-medium text-red-600 hover:bg-white focus:outline-none"
+                  >
+                    <i data-lucide="trash-2" class="h-4 w-4 ml-2"></i>
+                    إزالة
+                  </button>
+                </div>
+              </div>
+            </div>
+            <p class="mt-1 text-xs text-gray-500">يجب أن يكون حجم الملف أقل من 5 ميجابايت. يُفضل الأبعاد 1500×500 بكسل. يُسمح بصيغ JPEG و PNG.</p>
+            <p id="bannerError" class="mt-1 text-xs text-red-600 hidden"></p>
+          </div>
+        </div>
+
+        <!-- Profile Picture -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">الصورة الشخصية</label>
+          <div class="flex items-center space-x-4">
+            <div class="flex-shrink-0">
+              <img
+                id="profilePreview"
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330"
+                alt="صورة الملف الشخصي"
+                class="h-24 w-24 rounded-full object-cover"
+              >
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center">
+                <label class="cursor-pointer bg-white px-3 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  <span>تغيير الصورة</span>
+                  <input
+                    type="file"
+                    id="profilePicture"
+                    accept="image/jpeg,image/png,image/gif"
+                    class="sr-only"
+                    onchange="handleImageUpload(event)"
+                  >
+                </label>
+                <button
+                  type="button"
+                  onclick="removeProfilePicture()"
+                  class="mr-2 text-sm text-red-600 hover:text-red-500"
+                >
+                  إزالة
+                </button>
+              </div>
+              <p class="mt-1 text-xs text-gray-500">يجب أن يكون حجم الملف أقل من 2 ميجابايت. يُسمح بصيغ JPEG و PNG و GIF.</p>
+              <p id="imageError" class="mt-1 text-xs text-red-600 hidden"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Display Name -->
+        <div>
+          <label for="displayName" class="block text-sm font-medium text-gray-700">الاسم المعروض <span class="text-red-500">*</span></label>
+          <input
+            type="text"
+            id="displayName"
+            name="displayName"
+            maxlength="50"
+            required
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            value="سارة جونسون"
+          >
+          <p class="mt-1 text-xs text-gray-500">
+            <span id="nameCounter">0</span>/50 حرف
+          </p>
+          <p id="nameError" class="mt-1 text-xs text-red-600 hidden"></p>
+        </div>
+
+        <!-- Bio -->
+        <div>
+          <label for="bio" class="block text-sm font-medium text-gray-700">نبذة شخصية</label>
+          <textarea
+            id="bio"
+            name="bio"
+            rows="4"
+            maxlength="300"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          >كاتبة شغوفة تستكشف حدود الخيال العلمي والفانتازيا.</textarea>
+          <p class="mt-1 text-xs text-gray-500">
+            <span id="bioCounter">0</span>/300 حرف
+          </p>
+          <p id="bioError" class="mt-1 text-xs text-red-600 hidden"></p>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex justify-end space-x-4">
+          <a
+            href="/profile.html"
+            class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
+          >
+            إلغاء
+          </a>
+          <button
+            type="submit"
+            class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            حفظ التغييرات
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Success Toast -->
+  <div
+    id="successToast"
+    class="fixed bottom-4 left-4 bg-green-50 text-green-800 rounded-lg p-4 shadow-lg transform transition-transform duration-300 translate-y-full"
+    role="alert"
+  >
+    <div class="flex items-center">
+      <i data-lucide="check-circle" class="h-5 w-5 text-green-400 ml-2"></i>
+      <p>تم تحديث الملف الشخصي بنجاح</p>
+    </div>
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Form elements
+    const form = document.getElementById('profileForm');
+    const displayName = document.getElementById('displayName');
+    const bio = document.getElementById('bio');
+    const nameCounter = document.getElementById('nameCounter');
+    const bioCounter = document.getElementById('bioCounter');
+    const nameError = document.getElementById('nameError');
+    const bioError = document.getElementById('bioError');
+    const imageError = document.getElementById('imageError');
+    const successToast = document.getElementById('successToast');
+
+    // Update character counters
+    function updateCounter(element, counter) {
+      counter.textContent = element.value.length;
+    }
+
+    displayName.addEventListener('input', () => {
+      updateCounter(displayName, nameCounter);
+      validateDisplayName();
+    });
+
+    bio.addEventListener('input', () => {
+      updateCounter(bio, bioCounter);
+      validateBio();
+    });
+
+    // Initial counter updates
+    updateCounter(displayName, nameCounter);
+    updateCounter(bio, bioCounter);
+
+    // Validation functions
+    function validateDisplayName() {
+      const value = displayName.value;
+      if (value.length > 50) {
+        nameError.textContent = 'لا يمكن أن يتجاوز الاسم المعروض 50 حرفًا';
+        nameError.classList.remove('hidden');
+        return false;
+      }
+      if (value.trim().length === 0) {
+        nameError.textContent = 'الاسم المعروض مطلوب';
+        nameError.classList.remove('hidden');
+        return false;
+      }
+      nameError.classList.add('hidden');
+      return true;
+    }
+
+    function validateBio() {
+      const value = bio.value;
+      if (value.length > 300) {
+        bioError.textContent = 'لا يمكن أن تتجاوز النبذة الشخصية 300 حرف';
+        bioError.classList.remove('hidden');
+        return false;
+      }
+      bioError.classList.add('hidden');
+      return true;
+    }
+
+    // Handle image upload
+    function handleImageUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        // Validate file size (2MB)
+        if (file.size > 2 * 1024 * 1024) {
+          imageError.textContent = 'يجب أن يكون حجم الملف أقل من 2 ميجابايت';
+          imageError.classList.remove('hidden');
+          return;
+        }
+
+        // Validate file type
+        if (!['image/jpeg', 'image/png', 'image/gif'].includes(file.type)) {
+          imageError.textContent = 'صيغة الملف غير مدعومة. يرجى رفع ملف JPEG أو PNG أو GIF';
+          imageError.classList.remove('hidden');
+          return;
+        }
+
+        // Preview image
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('profilePreview').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+        imageError.classList.add('hidden');
+      }
+    }
+
+    function removeProfilePicture() {
+      document.getElementById('profilePreview').src = 'https://images.unsplash.com/photo-1494790108377-be9c29b29330';
+      document.getElementById('profilePicture').value = '';
+    }
+
+    // Handle banner image upload
+    function handleBannerUpload(event) {
+      const file = event.target.files[0];
+      const bannerError = document.getElementById('bannerError');
+      
+      if (file) {
+        // Validate file size (5MB)
+        if (file.size > 5 * 1024 * 1024) {
+          bannerError.textContent = 'يجب أن يكون حجم الملف أقل من 5 ميجابايت';
+          bannerError.classList.remove('hidden');
+          return;
+        }
+
+        // Validate file type
+        if (!['image/jpeg', 'image/png'].includes(file.type)) {
+          bannerError.textContent = 'صيغة الملف غير مدعومة. يرجى رفع ملف JPEG أو PNG';
+          bannerError.classList.remove('hidden');
+          return;
+        }
+
+        // Validate dimensions
+        const img = new Image();
+        img.onload = function() {
+          if (this.width < 1500 || this.height < 500) {
+            bannerError.textContent = 'يُفضل أن تكون أبعاد الصورة 1500×500 بكسل على الأقل';
+            bannerError.classList.remove('hidden');
+          } else {
+            bannerError.classList.add('hidden');
+          }
+        };
+
+        // Preview image
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('bannerPreview').src = e.target.result;
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function removeBannerImage() {
+      document.getElementById('bannerPreview').src = 'https://images.unsplash.com/photo-1519681393784-d120267933ba';
+      document.getElementById('bannerImage').value = '';
+      document.getElementById('bannerError').classList.add('hidden');
+    }
+
+    // Form submission
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Validate all fields
+      const isDisplayNameValid = validateDisplayName();
+      const isBioValid = validateBio();
+
+      if (isDisplayNameValid && isBioValid) {
+        // Show success message
+        successToast.classList.remove('translate-y-full');
+        setTimeout(() => {
+          successToast.classList.add('translate-y-full');
+          // Redirect to profile page after success
+          window.location.href = '/profile.html';
+        }, 2000);
+      }
+    });
+
+    function handleLogout() {
+      // Add logout logic here
+      alert('تم تسجيل الخروج بنجاح');
+    }
+  </script>
+</body>
+</html>
