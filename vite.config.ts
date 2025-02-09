@@ -7,6 +7,9 @@ export default defineConfig({
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
+  build: {
+    outDir: 'dist',  // Ensures the output is in "dist"
+  },
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
