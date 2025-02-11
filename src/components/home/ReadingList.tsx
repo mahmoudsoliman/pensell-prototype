@@ -10,9 +10,10 @@ function ReadingListItem({ story, progress }: ReadingListItemProps) {
   return (
     <div className="bg-white rounded-lg shadow-sm p-4 flex items-center space-x-4">
       <img
-        src={story.coverImage || 'https://images.unsplash.com/photo-1532012197267-da84d127e765'}
+        src={`${story.coverImage || 'https://images.unsplash.com/photo-1532012197267-da84d127e765'}?w=150&q=75`}
         alt={story.title}
         className="w-16 h-16 object-cover rounded"
+        loading="lazy"
       />
       <div className="flex-1 min-w-0 mr-4">
         <h4 className="font-medium text-gray-900 truncate">{story.title}</h4>

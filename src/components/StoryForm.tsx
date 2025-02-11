@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Save, Eye, Upload, X, Send } from 'lucide-react';
+import { Save, Eye, Upload, X } from 'lucide-react';
 import { Story, CATEGORIES } from '../types';
 
 const SUGGESTED_TAGS = [
@@ -117,24 +117,8 @@ export function StoryForm() {
     alert('تم حفظ المسودة بنجاح!');
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (validateForm()) {
-      // Here you would typically make an API call to save the story
-      // For now, we'll simulate a successful save
-      
-      // Show success message
-      alert('تم نشر القصة بنجاح!');
-      
-      // Redirect to the story detail page
-      // In a real app, you would get the ID from the API response
-      const newStoryId = '1';
-      navigate(`/story/${newStoryId}`);
-    }
-  };
-
   return (
-    <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg" dir="rtl">
+    <form className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg" dir="rtl">
       <div className="space-y-6">
         <div>
           <label className="block text-sm font-medium text-gray-700">العنوان</label>
@@ -295,13 +279,6 @@ export function StoryForm() {
           >
             <Save className="h-4 w-4 ml-2" />
             حفظ المسودة
-          </button>
-          <button
-            type="submit"
-            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            <Send className="h-4 w-4 ml-2" />
-            نشر القصة
           </button>
         </div>
       </div>

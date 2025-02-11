@@ -35,32 +35,7 @@ export function MyStoriesScreen() {
       likes: 2300,
       commentsCount: 456
     },
-    {
-      id: '2',
-      title: 'همسات في الظلام',
-      description: 'قصة رعب نفسي تستكشف أعماق الخوف البشري.',
-      category: 'رعب',
-      tags: ['رعب', 'نفسي', 'غموض'],
-      language: 'العربية',
-      maturityRating: 'Mature',
-      status: 'Complete',
-      coverImage: 'https://images.unsplash.com/photo-1518709766631-a6a7f45921c3',
-      authorId: '1',
-      author: {
-        id: '1',
-        username: 'starwriter',
-        displayName: 'سارة جونسون',
-        following: 1200,
-        followers: 5000,
-        joinedDate: new Date('2023-01-01')
-      },
-      parts: [],
-      createdAt: new Date('2023-12-01'),
-      updatedAt: new Date('2024-01-30'),
-      views: 12000,
-      likes: 1800,
-      commentsCount: 320
-    }
+    // ... other stories
   ];
 
   const filteredStories = stories.filter(story => {
@@ -124,20 +99,28 @@ export function MyStoriesScreen() {
         {sortedStories.map(story => (
           <div key={story.id} className="bg-white rounded-lg shadow-sm overflow-hidden">
             <div className="flex items-start p-4">
-              {/* Cover Image */}
-              <img
-                src={story.coverImage}
-                alt={story.title}
-                className="w-32 h-44 object-cover rounded-lg"
-              />
+              {/* Cover Image - Now clickable */}
+              <Link to={`/story/${story.id}`}>
+                <img
+                  src={`${story.coverImage}?w=200&q=75`}
+                  alt={story.title}
+                  className="w-32 h-44 object-cover rounded-lg hover:opacity-80 transition-opacity"
+                  loading="lazy"
+                />
+              </Link>
 
               {/* Story Info */}
               <div className="flex-1 min-w-0 mr-4">
                 <div className="flex items-start justify-between">
                   <div>
-                    <h2 className="text-xl font-semibold text-gray-900 mb-1">
-                      {story.title}
-                    </h2>
+                    <Link 
+                      to={`/story/${story.id}`}
+                      className="hover:text-indigo-600 transition-colors"
+                    >
+                      <h2 className="text-xl font-semibold text-gray-900 mb-1">
+                        {story.title}
+                      </h2>
+                    </Link>
                     <p className="text-sm text-gray-500 line-clamp-2 mb-3">
                       {story.description}
                     </p>

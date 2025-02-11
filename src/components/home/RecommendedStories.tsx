@@ -15,9 +15,10 @@ function StoryCard({ story }: StoryCardProps) {
     >
       <div className="relative aspect-[3/4]">
         <img
-          src={story.coverImage}
+          src={`${story.coverImage}?w=300&q=75`}
           alt={story.title}
           className="w-full h-full object-cover"
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         <div className="absolute bottom-2 right-2 left-2">
